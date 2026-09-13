@@ -2,6 +2,7 @@ package com.appointment.backend.service;
 
 import com.appointment.backend.repository.ServiceRepository;
 import org.springframework.stereotype.Service;
+import com.appointment.backend.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -23,4 +24,9 @@ public class ServiceManagementService {
     public List<com.appointment.backend.model.Service> getAllServices() {
         return serviceRepository.findAll();
     }
+
+    public com.appointment.backend.model.Service getServiceById(Long id) {
+    return serviceRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Service not found"));
+}
 }

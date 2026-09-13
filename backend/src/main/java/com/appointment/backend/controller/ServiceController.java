@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 
@@ -25,5 +26,10 @@ public class ServiceController {
     @GetMapping("/api/services")
 public List<Service> getAllServices() {
     return serviceManagementService.getAllServices();
+}
+
+@GetMapping("/api/services/{id}")
+public Service getServiceById(@PathVariable Long id) {
+    return serviceManagementService.getServiceById(id);
 }
 }
